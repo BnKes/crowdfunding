@@ -59,4 +59,5 @@
 		from t_user where loginacct=#{loginacct} and userpswd=#{userpswd}
 	</select>
 
+
 </mapper>

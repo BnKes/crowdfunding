@@ -37,9 +37,11 @@
     
     <bean id="exceptionResolver"  
         class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+        <property name="exceptionAttribute" value="exception"></property>
         <property name="exceptionMappings">  
             <props>
                 <prop key="java.lang.Exception">error/error</prop>
+                <prop key="com.atguigu.atcrowdfunding.exception.LoginFailException">login</prop>
             </props>  
         </property>  
     </bean>
