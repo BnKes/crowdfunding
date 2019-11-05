@@ -1,0 +1,13 @@
+1572759728115	Move 'jdbc.properties' to 'config'
+1572767798037	Move 'error' to 'jsp'
+1572767897276	Rename resource 'error.jsp'
+1572767909306	Delete element
+1572767998823	Move 'error' to 'WEB-INF'
+1572768093514	Move 'error' to 'jsp'
+1572867738811	Copy package
+1572868475204	Delete element
+1572870291115	Move file
+1572873654612	Delete element
+1572873811380	Rename resource 'MgbTest.java'
+1572874089360	Delete element
+1572874737801	Delete element
