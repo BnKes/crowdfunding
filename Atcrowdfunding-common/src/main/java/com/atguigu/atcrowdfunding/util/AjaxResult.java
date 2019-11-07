@@ -4,7 +4,14 @@ public class AjaxResult {
 	
 	private boolean success;
 	private String message;
+	private Page page;
 	
+	public Page getPage() {
+		return page;
+	}
+	public void setPage(Page page) {
+		this.page = page;
+	}
 	public boolean isSuccess() {
 		return success;
 	}

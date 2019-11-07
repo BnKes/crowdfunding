@@ -38,6 +38,13 @@ public class DispatcherController {
 		return "main";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){	
+		
+		session.invalidate();//销毁session对象
+		return "redirect:/index.htm";
+	}
+	
 	//异步请求
 	@ResponseBody
 	@RequestMapping("/doLogin")
@@ -58,7 +65,7 @@ public class DispatcherController {
 			result.setSuccess(true);
 		
 		} catch (Exception e) {
-			result.setMessage("登录失败");
+			result.setMessage("登录失败，用户名或密码错误");
 			e.printStackTrace();
 			
 			result.setSuccess(false);
