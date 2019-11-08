@@ -1,0 +1,9 @@
+eclipse.m2.defaultRuntime=apache-maven-3.6.1-bin
+eclipse.m2.globalSettingsFile=F\:\\apache-maven-3.6.1\\conf\\settings.xml
+eclipse.m2.globalUpdatePolicy=false
+eclipse.m2.runtimes=apache-maven-3.6.1-bin
+eclipse.m2.runtimesNodes/apache-maven-3.6.1-bin/extensions=P/Atcrowdfunding-potal-impl|P/Atcrowdfunding-potal-api|P/Atcrowdfunding-manager-impl|P/Atcrowdfunding-manager-api|P/Atcrowdfunding-main|P/Atcrowdfunding-common|P/Atcrowdfunding-bean|P/01-Atcrowdfunding-parent
+eclipse.m2.runtimesNodes/apache-maven-3.6.1-bin/location=F\:\\apache-maven-3.6.1
+eclipse.m2.runtimesNodes/apache-maven-3.6.1-bin/type=EXTERNAL
+eclipse.m2.userSettingsFile=F\:\\apache-maven-3.6.1\\conf\\settings.xml
+eclipse.preferences.version=1
