@@ -15,6 +15,7 @@ import com.atguigu.atcrowdfunding.util.AjaxResult;
 import com.atguigu.atcrowdfunding.util.Const;
 import com.atguigu.atcrowdfunding.util.Page;
 import com.atguigu.atcrowdfunding.util.StringUtil;
+import com.atguigu.atcrowdfunding.vo.Data;
 
 @Controller
 @RequestMapping("/user")
@@ -25,6 +26,44 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@ResponseBody
+	@RequestMapping("/doDeleteBatch")
+	public Object doDeleteBatch(Data data){  //由前端传来的数据自动封装成User
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			int count = userService.deleteBatchUserByVO(data);
+			
+			result.setSuccess(count==data.getDatas().size());			
+			
+		} catch (Exception e) {
+			result.setSuccess(false);
+			e.printStackTrace();
+			result.setMessage("批量删除数据失败！");
+		}
+		return result; 
+	}
+	
+	@ResponseBody
+	@RequestMapping("/doDelete")
+	public Object doDelete(Integer id){  //由前端传来的数据自动封装成User
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			int count = userService.deleteUser(id);
+			
+			result.setSuccess(count==1);			
+			
+		} catch (Exception e) {
+			result.setSuccess(false);
+			e.printStackTrace();
+			result.setMessage("删除数据失败！");
+		}
+		return result; 
+	}
 	
 	@RequestMapping("/toUpdate")
 	public String toUpdate(Integer id,Map map){

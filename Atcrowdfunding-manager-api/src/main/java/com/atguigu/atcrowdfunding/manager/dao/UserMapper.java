@@ -26,4 +26,6 @@ public interface UserMapper {
 	//加模糊查询
 	List<User> queryList(Map<String, Object> paramMap);
 	Integer queryCount(Map<String, Object> paramMap);
+
+	int deleteBatchUserByVO(@Param("userList") List<User> userList);
 }

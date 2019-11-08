@@ -80,11 +80,11 @@ table tbody td:nth-child(even) {
 								<i class="glyphicon glyphicon-search"></i> 查询
 							</button>
 						</form>
-						<button type="button" class="btn btn-danger"
+						<button type="button" class="btn btn-danger" id="deleteBatchBtn"
 							style="float: right; margin-left: 10px;">
 							<i class=" glyphicon glyphicon-remove"></i> 删除
 						</button>
-						<button type="button" class="btn btn-primary"
+						<button type="button" class="btn btn-primary" 
 							style="float: right;" onclick="window.location.href='${APP_PATH}/user/add.htm'">
 							<i class="glyphicon glyphicon-plus"></i> 新增
 						</button>
@@ -95,7 +95,7 @@ table tbody td:nth-child(even) {
 								<thead>
 									<tr>
 										<th width="30">#</th>
-										<th width="30"><input type="checkbox"></th>
+										<th width="30"><input id="allCheckbox" type="checkbox"></th>
 										<th>账号</th>
 										<th>名称</th>
 										<th>邮箱地址</th>
@@ -228,14 +228,14 @@ table tbody td:nth-child(even) {
             				$.each(data,function(i,n){ 
             					content+='<tr>';
                 				content+='  <td>'+(i+1)+'</td>';
-                				content+='  <td><input type="checkbox"></td>';
+                				content+='  <td><input id="'+n.id+'" loginacct="'+n.loginacct+'" type="checkbox"></td>';
                 				content+='  <td>'+n.loginacct+'</td>';
                 				content+='  <td>'+n.username+'</td>';
                 				content+='  <td>'+n.email+'</td>';
                 				content+='  <td>';
                 				content+='	  <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
                 				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/toUpdate.htm?id='+n.id+'\'" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
-                				content+='	  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
+                				content+='	  <button type="button" onclick="deleteUser('+n.id+',\''+n.loginacct+'\')" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
                 				content+='  </td>';
                 				content+='</tr>';
             				});
@@ -277,10 +277,84 @@ table tbody td:nth-child(even) {
             	});
             }
             
+            function deleteUser(id,loginacct){
+            	layer.confirm("确认要删除["+loginacct+"]用户吗?",  {icon: 3, title:'提示'}, function(cindex){
+            		layer.close(cindex);
+            		$.ajax({
+                		type : "POST",
+                		data : {
+                			"id" : id
+                		},
+                		url : "${APP_PATH}/user/doDelete.do",
+                		beforeSend : function() {   
+                			return true ;
+                		},
+                		success : function(result){
+                			if(result.success){
+                				window.location.href="${APP_PATH}/user/toIndex.htm";
+                			}else{
+                				layer.msg("删除用户失败", {time:1000, icon:5, shift:6}); 
+                			}
+                		},
+                		error : function(){
+                			layer.msg("删除失败", {time:1000, icon:5, shift:6}); 
+                		}
+                	});
+    			}, function(cindex){
+    			    layer.close(cindex);
+    			});            	         
+            	
+            }
+            
             $("#queryBtn").click(function(){
             	var queryText = $("#queryText").val();
             	jsonObj.queryText =  queryText ;
             	queryPageUser(1);
+            });
+            
+            $("#allCheckbox").click(function(){
+            	var checkStatus  = this.checked;
+            	/* alert(checkStatus); */
+            	$("tbody tr td input[type='checkbox']").prop("checked",checkStatus);
+            });
+            
+            $("#deleteBatchBtn").click(function(){
+            	var selectCheckbox = $("tbody tr td input:checked");
+            	if(selectCheckbox.length==0){
+            		layer.msg("请至少选择一个用户删除", {time:1000, icon:5, shift:6});
+            		return false;
+            	}
+            	
+            	var jsonObj = {};
+            	
+            	$.each(selectCheckbox,function(i,n){
+            		jsonObj["datas["+i+"].id"] = n.id;
+            		jsonObj["datas["+i+"].loginacct"] = n.loginacct;
+            	})
+            	layer.confirm("确认要删除所选用户吗?",  {icon: 3, title:'提示'}, function(cindex){
+            		layer.close(cindex);
+            		$.ajax({
+                		type : "POST",
+                		data : jsonObj,
+                		url : "${APP_PATH}/user/doDeleteBatch.do",
+                		beforeSend : function() {   
+                			return true ;
+                		},
+                		success : function(result){
+                			if(result.success){
+                				window.location.href="${APP_PATH}/user/toIndex.htm";
+                			}else{
+                				layer.msg("删除用户失败", {time:1000, icon:5, shift:6}); 
+                			}
+                		},
+                		error : function(){
+                			layer.msg("删除失败", {time:1000, icon:5, shift:6}); 
+                		}
+                	});
+    			}, function(cindex){
+    			    layer.close(cindex);
+    			});            	         
+            	          	
             });
         </script>
 </body>

@@ -16,6 +16,7 @@ import com.atguigu.atcrowdfunding.manager.service.UserService;
 import com.atguigu.atcrowdfunding.util.Const;
 import com.atguigu.atcrowdfunding.util.MD5Util;
 import com.atguigu.atcrowdfunding.util.Page;
+import com.atguigu.atcrowdfunding.vo.Data;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -92,6 +93,20 @@ public class UserServiceImpl implements UserService {
 	public int updateUser(User user) {
 
 		return userMapper.updateByPrimaryKey(user);
+	}
+
+
+	@Override
+	public int deleteUser(Integer id) {
+		
+		return userMapper.deleteByPrimaryKey(id);
+	}
+
+
+	@Override
+	public int deleteBatchUserByVO(Data data) {
+		
+		return userMapper.deleteBatchUserByVO(data.getDatas());
 	}
 	
 		
