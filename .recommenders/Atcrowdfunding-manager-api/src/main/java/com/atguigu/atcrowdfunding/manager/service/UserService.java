@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.util.Page;
+import com.atguigu.atcrowdfunding.vo.Data;
 
 public interface UserService {
 
@@ -25,5 +26,8 @@ public interface UserService {
 
 
 	int deleteUser(Integer id);
+
+
+	int deleteBatchUserByVO(Data data);
 
 }

@@ -15,6 +15,7 @@ import com.atguigu.atcrowdfunding.util.AjaxResult;
 import com.atguigu.atcrowdfunding.util.Const;
 import com.atguigu.atcrowdfunding.util.Page;
 import com.atguigu.atcrowdfunding.util.StringUtil;
+import com.atguigu.atcrowdfunding.vo.Data;
 
 @Controller
 @RequestMapping("/user")
@@ -25,6 +26,25 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@ResponseBody
+	@RequestMapping("/doDeleteBatch")
+	public Object doDeleteBatch(Data data){  //由前端传来的数据自动封装成User
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			int count = userService.deleteBatchUserByVO(data);
+			
+			result.setSuccess(count==data.getDatas().size());			
+			
+		} catch (Exception e) {
+			result.setSuccess(false);
+			e.printStackTrace();
+			result.setMessage("批量删除数据失败！");
+		}
+		return result; 
+	}
 	
 	@ResponseBody
 	@RequestMapping("/doDelete")
@@ -100,8 +120,8 @@ public class UserController {
 	}
 	
 	//异步分页查询
-	@RequestMapping("/toIndex")
-	public String toIndex(){
+	@RequestMapping("index")
+	public String index(){
 		return "user/index";  //异步，先直接到user/index.jsp，数据待会异步传入
 	}
 	
@@ -109,8 +129,8 @@ public class UserController {
 	
 	//异步分页模糊查询
 	@ResponseBody
-	@RequestMapping("/index")
-	public Object index(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
+	@RequestMapping("/doIndex")
+	public Object doIndex(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
 	@RequestParam(value="pagesize",required=false,defaultValue="10") Integer pagesize, String queryText){
 		
 		AjaxResult result = new AjaxResult();
