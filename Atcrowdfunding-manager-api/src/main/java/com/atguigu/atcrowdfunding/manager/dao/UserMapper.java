@@ -1,6 +1,9 @@
 package com.atguigu.atcrowdfunding.manager.dao;
 
+import com.atguigu.atcrowdfunding.bean.Role;
 import com.atguigu.atcrowdfunding.bean.User;
+import com.atguigu.atcrowdfunding.vo.Data;
+
 import java.util.List;
 import java.util.Map;
 
@@ -28,4 +31,12 @@ public interface UserMapper {
 	Integer queryCount(Map<String, Object> paramMap);
 
 	int deleteBatchUserByVO(@Param("userList") List<User> userList);
+
+	List<Role> queryAllRole();
+
+	List<Integer> queryRoleByUserid(Integer id);
+
+	int saveUserRoleRelationship(@Param("userid") Integer userid, @Param("data") Data data);
+
+	int deleteUserRoleRelationship(@Param("userid") Integer userid, @Param("data")Data data);
 }

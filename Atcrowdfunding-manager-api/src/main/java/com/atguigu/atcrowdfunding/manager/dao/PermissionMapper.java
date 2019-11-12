@@ -3,6 +3,9 @@ package com.atguigu.atcrowdfunding.manager.dao;
 import com.atguigu.atcrowdfunding.bean.Permission;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface PermissionMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +16,6 @@ public interface PermissionMapper {
     List<Permission> selectAll();
 
     int updateByPrimaryKey(Permission record);
+
+	List<Permission> queryAllPermission();
 }

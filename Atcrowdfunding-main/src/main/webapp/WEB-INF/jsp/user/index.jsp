@@ -55,9 +55,7 @@ table tbody td:nth-child(even) {
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<div class="tree">
-					<ul style="padding-left: 0px;" class="list-group">
-						  <%@ include file="/WEB-INF/jsp/common/left.jsp" %>
-					</ul>
+					<jsp:include page="/WEB-INF/jsp/common/menu.jsp"></jsp:include>
 				</div>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -188,6 +186,7 @@ table tbody td:nth-child(even) {
 				});
 			    
 			    queryPageUser(1);
+			    showMenu();
             });
             $("tbody .btn-success").click(function(){
                 window.location.href = "assignRole.html";
@@ -212,7 +211,7 @@ table tbody td:nth-child(even) {
             	$.ajax({
             		type : "POST",
             		data : jsonObj,
-            		url : "${APP_PATH}/user/index.do",
+            		url : "${APP_PATH}/user/doIndex.do",
             		beforeSend : function(){
             			loadingIndex = layer.load(2, {time: 10*1000});
             			return true ;
@@ -221,7 +220,7 @@ table tbody td:nth-child(even) {
             			layer.close(loadingIndex);
             			if(result.success){
             				var page = result.page ;
-            				var data = page.datas ;
+            				var data = page.data ;
             				
             				var content = '';
             				
@@ -233,7 +232,7 @@ table tbody td:nth-child(even) {
                 				content+='  <td>'+n.username+'</td>';
                 				content+='  <td>'+n.email+'</td>';
                 				content+='  <td>';
-                				content+='	  <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
+                				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/assignRole.htm?id='+n.id+'\'" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
                 				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/toUpdate.htm?id='+n.id+'\'" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
                 				content+='	  <button type="button" onclick="deleteUser('+n.id+',\''+n.loginacct+'\')" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
                 				content+='  </td>';
@@ -291,7 +290,7 @@ table tbody td:nth-child(even) {
                 		},
                 		success : function(result){
                 			if(result.success){
-                				window.location.href="${APP_PATH}/user/toIndex.htm";
+                				window.location.href="${APP_PATH}/user/index.htm";
                 			}else{
                 				layer.msg("删除用户失败", {time:1000, icon:5, shift:6}); 
                 			}
@@ -342,7 +341,7 @@ table tbody td:nth-child(even) {
                 		},
                 		success : function(result){
                 			if(result.success){
-                				window.location.href="${APP_PATH}/user/toIndex.htm";
+                				window.location.href="${APP_PATH}/user/index.htm";
                 			}else{
                 				layer.msg("删除用户失败", {time:1000, icon:5, shift:6}); 
                 			}
@@ -357,5 +356,6 @@ table tbody td:nth-child(even) {
             	          	
             });
         </script>
+        <script type="text/javascript" src="${APP_PATH }/script/menu.js"></script>
 </body>
 </html>

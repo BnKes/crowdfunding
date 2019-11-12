@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atguigu.atcrowdfunding.bean.Role;
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.exception.LoginFailException;
 import com.atguigu.atcrowdfunding.manager.dao.UserMapper;
@@ -42,9 +43,9 @@ public class UserServiceImpl implements UserService {
 		Integer startIndex = page.getStartIndex();
 		paramMap.put("startIndex", startIndex);
 		
-		List<User> datas = userMapper.queryList(paramMap);
+		List<User> data = userMapper.queryList(paramMap);
 		
-		page.setDatas(datas);
+		page.setData(data);
 		
 		Integer totalsize = userMapper.queryCount(paramMap);
 		page.setTotalsize(totalsize);
@@ -107,6 +108,33 @@ public class UserServiceImpl implements UserService {
 	public int deleteBatchUserByVO(Data data) {
 		
 		return userMapper.deleteBatchUserByVO(data.getDatas());
+	}
+
+
+	@Override
+	public List<Role> queryAllRole() {
+		
+		return userMapper.queryAllRole();
+	}
+
+
+	@Override
+	public List<Integer> queryRoleByUserid(Integer id) {
+		
+		return userMapper.queryRoleByUserid(id);
+	}
+
+
+	@Override
+	public int saveUserRoleRelationship(Integer userid, Data data) {
+		return userMapper.saveUserRoleRelationship(userid,data);
+	}
+
+
+	@Override
+	public int deleteUserRoleRelationship(Integer userid, Data data) {
+		
+		return userMapper.deleteUserRoleRelationship(userid,data);
 	}
 	
 		

@@ -1,6 +1,8 @@
 package com.atguigu.atcrowdfunding.manager.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.atguigu.atcrowdfunding.bean.Role;
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.manager.service.UserService;
 import com.atguigu.atcrowdfunding.util.AjaxResult;
@@ -26,6 +29,67 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@ResponseBody
+	@RequestMapping("/doAssignRole")
+	public Object doAssignRole(Integer userid, Data data){  //List<Integer> ids
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			int count = userService.saveUserRoleRelationship(userid,data);
+			
+			result.setSuccess(true);			
+			
+		} catch (Exception e) {
+			result.setSuccess(false);
+			e.printStackTrace();
+			result.setMessage("添加角色失败！");
+		}
+		return result; 
+	}
+	
+	@ResponseBody
+	@RequestMapping("/doUnAssignRole")
+	public Object doUnAssignRole(Integer userid,Data data){  //List<Integer> ids
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			userService.deleteUserRoleRelationship(userid,data);;
+			
+			result.setSuccess(true);			
+			
+		} catch (Exception e) {
+			result.setSuccess(false);
+			e.printStackTrace();
+			result.setMessage("取消角色失败!");
+		}
+		return result; 
+	}
+	
+	@RequestMapping("/assignRole")
+	public String assignRole(Integer id,Map map){
+		
+		List<Role> allListRole = userService.queryAllRole();
+		List<Integer> roleIds = userService.queryRoleByUserid(id);
+		
+		List<Role> leftRoleList = new ArrayList<Role>(); //未分配角色
+		List<Role> rightRoleList = new ArrayList<Role>(); //已分配角色
+		
+		for (Role role : allListRole) {
+			if(roleIds.contains(role.getId())){
+				rightRoleList.add(role);
+			}else{
+				leftRoleList.add(role);
+			}
+		}
+		
+		map.put("leftRoleList", leftRoleList);
+		map.put("rightRoleList", rightRoleList);
+		
+		return "user/assignrole";
+	}
 	
 	@ResponseBody
 	@RequestMapping("/doDeleteBatch")
@@ -120,8 +184,8 @@ public class UserController {
 	}
 	
 	//异步分页查询
-	@RequestMapping("/toIndex")
-	public String toIndex(){
+	@RequestMapping("index")
+	public String index(){
 		return "user/index";  //异步，先直接到user/index.jsp，数据待会异步传入
 	}
 	
@@ -129,8 +193,8 @@ public class UserController {
 	
 	//异步分页模糊查询
 	@ResponseBody
-	@RequestMapping("/index")
-	public Object index(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
+	@RequestMapping("/doIndex")
+	public Object doIndex(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
 	@RequestParam(value="pagesize",required=false,defaultValue="10") Integer pagesize, String queryText){
 		
 		AjaxResult result = new AjaxResult();
@@ -149,7 +213,7 @@ public class UserController {
 				paramMap.put("queryText", queryText);  // \%
 			}
 			
-			Page page = userService.queryPage(paramMap);
+			Page<User> page = userService.queryPage(paramMap);
 			
 			result.setSuccess(true);
 			result.setPage(page);
