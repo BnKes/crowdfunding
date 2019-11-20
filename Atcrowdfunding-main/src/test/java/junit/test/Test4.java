@@ -15,7 +15,8 @@ public class Test4 {
 		UserService userService = ioc.getBean(UserService.class);
 		
 		
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 301; i <= 400; i++) {
+			System.out.println(i);
 			User user = new User();
 			user.setLoginacct("test"+i);
 			user.setUserpswd(MD5Util.digest("123"));

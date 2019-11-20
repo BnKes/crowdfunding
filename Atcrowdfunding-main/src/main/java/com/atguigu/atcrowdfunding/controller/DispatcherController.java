@@ -1,7 +1,11 @@
 package com.atguigu.atcrowdfunding.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.atguigu.atcrowdfunding.bean.Permission;
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.manager.service.UserService;
 import com.atguigu.atcrowdfunding.util.AjaxResult;
@@ -62,6 +66,31 @@ public class DispatcherController {
 			
 			session.setAttribute(Const.LOGIN_USER, user);
 			
+			//加载当前用户所拥有的许可权限
+			List<Permission> myPermissions = userService.queryPermissionByUserid(user.getId());
+			Permission permissionRoot = null;
+			
+			Set<String> myUris = new HashSet<String>();//存放登录者拥有的uri
+			Map<Integer,Permission> map = new HashMap<Integer,Permission>();
+			
+			for(Permission innerpermission: myPermissions){
+				map.put(innerpermission.getId(),innerpermission );//把查出来的数据全部放入map中使用，不
+				myUris.add("/"+innerpermission.getUrl());	//数据库里的uri无"/"
+			}
+			
+			for(Permission permission : myPermissions){  //利用递归，一个嵌套的Jason数据，通过F12-network看请求发送的数据
+				Permission child = permission;
+				
+				if(child.getPid()==null){
+					permissionRoot=permission;
+				}else{
+					Permission parent = map.get(child.getPid());
+					parent.getChildren().add(child);
+				}
+			}
+		
+			session.setAttribute("permissionRoot", permissionRoot);
+			session.setAttribute(Const.MY_URIS,myUris );
 			result.setSuccess(true);
 		
 		} catch (Exception e) {

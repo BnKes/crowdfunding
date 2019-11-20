@@ -18,4 +18,6 @@ public interface PermissionMapper {
     int updateByPrimaryKey(Permission record);
 
 	List<Permission> queryAllPermission();
+
+	List<Integer> queryPermissionidsByRoleid(Integer roleid);
 }

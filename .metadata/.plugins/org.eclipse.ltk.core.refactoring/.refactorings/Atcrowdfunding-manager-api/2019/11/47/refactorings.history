@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Atcrowdfunding-manager-api/src/main/java/com/atguigu/atcrowdfunding/manager/dao/AdvertisementMapper.java&apos; to &apos;AdvertMapper.java&apos;" description="Rename resource &apos;AdvertisementMapper.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/atguigu/atcrowdfunding/manager/dao/AdvertisementMapper.java" name="AdvertMapper.java" stamp="1574083200930" updateReferences="true"/>
+</session>

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+org.eclipse.jdt.core.builder.invalidClasspath=ignore
 org.eclipse.jdt.core.classpathVariable.ASPECTJRT_LIB=F\:/eclipse/plugins/org.aspectj.runtime_1.8.9.201604061446.jar
 org.eclipse.jdt.core.classpathVariable.ECLIPSE_HOME=F\:/eclipse/
 org.eclipse.jdt.core.classpathVariable.JRE_LIB=C\:/Program Files/Java/jre1.8.0_181/lib/rt.jar

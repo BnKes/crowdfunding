@@ -1,8 +1,19 @@
 package com.atguigu.atcrowdfunding.listener;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.atguigu.atcrowdfunding.bean.Permission;
+import com.atguigu.atcrowdfunding.manager.service.PermissionService;
+import com.atguigu.atcrowdfunding.util.Const;
 
 public class StartSystemListener implements ServletContextListener {
 
@@ -13,9 +24,18 @@ public class StartSystemListener implements ServletContextListener {
 		ServletContext application = sce.getServletContext();
 		String contextPath = application.getContextPath();
 		application.setAttribute("APP_PATH", contextPath);
-		System.out.println("APP_PATH...");
 		
-		//2.
+		//加载所有的pemission路径
+		ApplicationContext ioc = WebApplicationContextUtils.getWebApplicationContext(application);
+		PermissionService permissionService = ioc.getBean(PermissionService.class);
+		List<Permission> queryAllPermission = permissionService.queryAllPermission();
+		Set<String> allURIs = new HashSet<String>();
+		
+		for(Permission permission:queryAllPermission){
+			allURIs.add("/"+permission.getUrl());
+		}
+		
+		application.setAttribute(Const.ALL_PERMISSION_URI, allURIs);
 	}
 
 	@Override
