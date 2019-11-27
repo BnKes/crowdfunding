@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.Math"/>
-<fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.manager.service.TestService"/>
-<fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.manager.service.impl.TestServiceImpl"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.manager.dao.TestDao"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletContextListener"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
@@ -25,17 +22,13 @@
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.manager.dao.PermissionMapper"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.vo.Data"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.springframework.web.servlet.handler.HandlerInterceptorAdapter"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="org.springframework.web.context.support.WebApplicationContextUtils"/>
 <fullyQualifiedTypeName name="com.vaadin.Application"/>
-<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.manager.service.PermissionService"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.bean.Permission"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
@@ -48,4 +41,23 @@
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.bean.User"/>
 <fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.bean.Advert"/>
+<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="org.activiti.engine.ProcessEngine"/>
+<fullyQualifiedTypeName name="org.activiti.engine.RepositoryService"/>
+<fullyQualifiedTypeName name="org.activiti.engine.repository.Deployment"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.activiti.engine.repository.ProcessDefinition"/>
+<fullyQualifiedTypeName name="org.activiti.engine.TaskService"/>
+<fullyQualifiedTypeName name="org.activiti.engine.task.TaskQuery"/>
+<fullyQualifiedTypeName name="org.activiti.bpmn.model.Task"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.activiti.engine.task.Task"/>
+<fullyQualifiedTypeName name="org.activiti.engine.HistoryService"/>
+<fullyQualifiedTypeName name="org.activiti.engine.history.HistoricProcessInstanceQuery"/>
+<fullyQualifiedTypeName name="org.activiti.engine.history.HistoricProcessInstance"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.activiti.listener.YesListener"/>
+<fullyQualifiedTypeName name="com.atguigu.atcrowdfunding.activiti.listener.NoListener"/>
 </qualifiedTypeNameHistroy>

@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="showMenu" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="getRepositoryService"/>
+			<item value="junit"/>
 			<item value="showMenu"/>
 			<item value="advertForm"/>
 			<item value="permission"/>
 			<item value="setDatas"/>
 			<item value="list-group"/>
 			<item value=".list-group"/>
-			<item value="cindex"/>
-			<item value="请输入查询条件"/>
 		</list>
 		<list key="replacehistory">
 		</list>

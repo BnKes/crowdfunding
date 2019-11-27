@@ -9,10 +9,18 @@
 	<parent>
 		<groupId>com.atguigu.maven</groupId>
 		<artifactId>01-Atcrowdfunding-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1-SNAPSHOT</version> 
 		<relativePath>../01-Atcrowdfunding-parent/pom.xml</relativePath>
 	</parent>
+	     
 	<dependencies>
+	
+		<dependency>
+    		<groupId>junit</groupId>
+   			<artifactId>junit</artifactId>
+   			<version>4.12</version>
+   			<scope>test</scope>
+     	</dependency>	
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>

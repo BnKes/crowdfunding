@@ -191,4 +191,6 @@
   <public publicId="-//SPRING//DTD BEAN 2.0//EN" uri="jar:file:/F:/eclipse/plugins/org.springframework.beans_4.3.0.20160611-RELEASE.jar!/org/springframework/beans/factory/xml/spring-beans-2.0.dtd" webURL="http://www.springframework.org/dtd/spring-beans-2.0.dtd"/>
   <public publicId="-//LOG4J//DTD LOG4J//EN" uri="jar:file:/F:/eclipse/plugins/org.springsource.ide.eclipse.commons.ui_3.8.4.201703310458-RELEASE.jar!/dtd/log4j-1.2.dtd" webURL="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd"/>
   <public publicId="-//APACHE//DTD LOG4J 1.2//EN" uri="jar:file:/F:/eclipse/plugins/org.springsource.ide.eclipse.commons.ui_3.8.4.201703310458-RELEASE.jar!/dtd/log4j-1.2.dtd" webURL="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd"/>
+  <uri name="http://www.omg.org/spec/BPMN/20100524/MODEL" uri="jar:file:/F:/eclipse/dropins/activiti-designer-5.14/plugins/org.activiti.designer.eclipse_5.14.1.jar!/xsd/BPMN20.xsd"/>
+  <uri name="http://activiti.org/bpmn" uri="jar:file:/F:/eclipse/dropins/activiti-designer-5.14/plugins/org.activiti.designer.eclipse_5.14.1.jar!/xsd/activiti-bpmn-extensions-5.4.xsd"/>
 </catalog>
