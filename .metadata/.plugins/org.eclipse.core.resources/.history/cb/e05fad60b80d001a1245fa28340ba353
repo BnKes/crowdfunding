@@ -1,0 +1,15 @@
+package junit.activiti;
+
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestActiviti {
+	ApplicationContext ioc = new ClassPathXmlApplicationContext("spring/spring-*.xml");
+	
+	@Test
+	public void test01(){
+		System.err.println("processEngine="+processEngine);
+	}
+	
+}

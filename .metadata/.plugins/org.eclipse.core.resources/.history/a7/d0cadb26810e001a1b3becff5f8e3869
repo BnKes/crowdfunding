@@ -1,0 +1,72 @@
+package junit.activiti;
+
+import java.util.List;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestActiviti {
+	ApplicationContext ioc = new ClassPathXmlApplicationContext("spring/spring-*.xml");
+	ProcessEngine processEngine = (ProcessEngine) ioc.getBean("processEngine");
+	 
+	//3.查询部署流程定义（内容）
+	@Test
+	public void test03(){
+		RepositoryService repositoryService = processEngine.getRepositoryService();
+		ProcessDefinitionQuery processDefinitionQuery= repositoryService.createProcessDefinitionQuery();
+		List<ProcessDefinition> list  = processDefinitionQuery.list();
+	
+		
+		for(ProcessDefinition processionDefinition : list){
+			System.out.println("Id="+processionDefinition.getId());
+			System.out.println("Key="+processionDefinition.getKey());
+			System.out.println("Name="+processionDefinition.getName());
+			System.out.println("Version="+processionDefinition.getVersion());
+			System.out.println("-------------------------");
+		}
+		
+		long count = processDefinitionQuery.count();
+		System.out.println("count="+count);
+		System.out.println("*****************");
+		
+		//查询最后一次部署的流程定义
+		ProcessDefinition processDefinition = processDefinitionQuery.latestVersion().singleResult();
+		System.out.println("Id="+processDefinition.getId());
+		System.out.println("Key="+processDefinition.getKey());
+		System.out.println("Name="+processDefinition.getName());
+		System.out.println("Version="+processDefinition.getVersion());
+		System.out.println("################################");
+		
+		//排序、分页查询流程定义
+		ProcessDefinitionQuery definitionQuery  = processDefinitionQuery.orderByProcessDefinitionVersion().desc();
+		List<ProcessDefinition> listPage = definitionQuery.listPage(0, 2);
+		for(ProcessDefinition processDefinition2 : listPage){
+			System.out.println("Id="+processDefinition2.getId());
+			System.out.println("Key="+processDefinition2.getKey());
+			System.out.println("Name="+processDefinition2.getName());
+			System.out.println("Version="+processDefinition2.getVersion());
+		}
+	}
+	
+	
+	//2.部署流程定义
+	@Test
+	public void test02(){
+		RepositoryService repositoryService = processEngine.getRepositoryService();
+		Deployment deploy = repositoryService.createDeployment().addClasspathResource("MyProcess1.bpmn").deploy();
+		System.out.println("deploy="+deploy);
+	}
+	
+	//1.创建流程引擎,创建23张表
+	@Test
+	public void test01(){
+		System.out.println("processEngine="+processEngine);
+	}
+	
+}
