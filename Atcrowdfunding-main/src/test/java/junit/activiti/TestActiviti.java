@@ -186,10 +186,9 @@ public class TestActiviti {
 		}
 		createTaskQuery = taskService.createTaskQuery();
 		count = createTaskQuery.taskAssignee("zhangsan").count();
-		System.out.println("zhangsan领取后的任务数量:"+count);
-		
-		
+		System.out.println("zhangsan领取后的任务数量:"+count);	
 	}
+	
 	//6.历史数据查询
 	@Test
 	public void test06(){
@@ -254,7 +253,7 @@ public class TestActiviti {
 			System.out.println("name="+task.getName());
 		}
 	}
-	//4.启动流程实例
+	//4.启动,流程实例(部署完后)
 	/**
 	 * act_hi_actinst, 历史的活动的任务表.
 	 * act_hi_procinst, 历史的流程实例表.
@@ -327,7 +326,7 @@ public class TestActiviti {
 	@Test
 	public void test02(){
 		RepositoryService repositoryService = processEngine.getRepositoryService();
-		Deployment deploy = repositoryService.createDeployment().addClasspathResource("MyProcess9.bpmn").deploy();
+		Deployment deploy = repositoryService.createDeployment().addClasspathResource("MyProcess10.bpmn").deploy();
 		System.out.println("deploy="+deploy);
 	}
 	

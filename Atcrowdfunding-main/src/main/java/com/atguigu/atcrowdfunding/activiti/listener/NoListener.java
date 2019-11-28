@@ -10,5 +10,4 @@ public class NoListener implements ExecutionListener {
 	public void notify(DelegateExecution execution) throws Exception {
 		System.out.println("审批拒绝...");
 	}
-
 }
