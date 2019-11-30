@@ -126,7 +126,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      <Context docBase="D:\学习视频\众筹项目\SSM众筹\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\学习视频\众筹项目\SSM众筹\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Atcrowdfunding-main" path="/Atcrowdfunding-main" reloadable="true" source="org.eclipse.jst.jee.server:Atcrowdfunding-main"/></Host>
+      <Context docBase="D:\a\b\c\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\a\b\c\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Atcrowdfunding-main" path="/Atcrowdfunding-main" reloadable="true" source="org.eclipse.jst.jee.server:Atcrowdfunding-main"/></Host>
     </Engine>
   </Service>
 </Server>
