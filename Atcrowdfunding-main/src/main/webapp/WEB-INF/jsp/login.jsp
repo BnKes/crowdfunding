@@ -31,7 +31,7 @@
       	${exception.message }
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 用户登录</h2>
 		  <div class="form-group has-success has-feedback">
-			<input type="text" class="form-control" id="floginacct" name="loginacct" value="superadmin" placeholder="请输入登录账号" autofocus>
+			<input type="text" class="form-control" id="floginacct" name="loginacct" value="zhangsan" placeholder="请输入登录账号" autofocus>
 			<span class="glyphicon glyphicon-user form-control-feedback"></span>
 		  </div>
 		  <div class="form-group has-success has-feedback">
@@ -40,13 +40,13 @@
 		  </div>
 		  <div class="form-group has-success has-feedback">
 			<select id="ftype" class="form-control" name="type">
-                <option value="member">会员</option>
-                <option value="user" selected>管理</option>
+                <option value="member" selected>会员</option>
+                <option value="user" >管理</option>
             </select>
 		  </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> 记住我
+            <input id="rememberme" type="checkbox" value="1"> 记住我两周
           </label>
           <br>
           <label>
@@ -68,7 +68,7 @@
     	
     	var floginacct = $("#floginacct");
     	var fuserpswd = $("#fuserpswd");
-    	var ftype = $("#ftype");
+    	var ftype = $("#ftype"); 
     	
     	if($.trim(floginacct.val())==""){
 //    		alert("用户账号不能为空，请重新输入！");
@@ -78,7 +78,7 @@
  shift:6    弹窗抖动
  */
     		layer.msg("用户账号不能为空，请重新输入！",{time:1000, icon:5, shift:6}, function(){   
-    			floginacct.val("");
+    			floginacct.val("");//赋值为空
         		floginacct.focus();
     		});
     		return false;  //结束if
@@ -94,13 +94,15 @@
     	}
     	
     	var loadingIndex = -1 ;
-    	
+    	var flag = $("#rememberme")[0].checked;  //选择为true,否则为false
+ /*    	var ff = $("#rememberme").val(); */
     	$.ajax({
     		type : "POST",
     		data : {
     			loginacct : floginacct.val(),
     			userpswd : fuserpswd.val(),
-    			type : ftype.val()
+    			type : ftype.val(),
+    			rememberme : flag?"1":"0"
     		},
     		url : "${APP_PATH}/doLogin.do",
     		beforeSend : function(){
@@ -109,9 +111,15 @@
     			return true ;
     		},
     		success : function(result){ //{"success":true}  或    {"success":false,"message":"登录失败!"}
+    			layer.close(loadingIndex);//关闭loadingIndex = layer.msg('处理中', {icon: 16})的layer
     			if(result.success){    
-    				layer.close(loadingIndex);//关闭loadingIndex = layer.msg('处理中', {icon: 16})的layer
-    				window.location.href="${APP_PATH}/main.htm";
+     				if(ftype.val()=="user"){
+        				window.location.href="${APP_PATH}/main.htm";
+    				}else if(ftype.val()=="member"){ 
+    					window.location.href="${APP_PATH}/member.htm";
+    				}else{
+    					layer.msg("登录身份有误!", {time:1000, icon:5, shift:6});
+    				} 
     			}else{
     				layer.msg(result.message, {time:1000, icon:5, shift:6});
     			}

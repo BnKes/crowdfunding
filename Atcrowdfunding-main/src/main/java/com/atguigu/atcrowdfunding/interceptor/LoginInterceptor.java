@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.atguigu.atcrowdfunding.bean.Member;
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.util.Const;
 
@@ -33,7 +34,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute(Const.LOGIN_USER);
-		if(user!=null){     //已登录
+		Member member = (Member) session.getAttribute(Const.LOGIN_MEMBER);
+		if(user!=null || member!=null){     //已登录
 			return true;
 		}else{
 			response.sendRedirect(request.getContextPath()+"/login.htm");
