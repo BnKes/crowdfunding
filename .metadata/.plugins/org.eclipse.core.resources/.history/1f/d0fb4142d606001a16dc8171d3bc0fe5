@@ -1,4 +1,0 @@
-jdbc.user=root
-jdbc.password=123456
-jdbc.url=jdbc:mysql://172.20.164.175:3305/atcrowdfunding170615?allowMultiQueries=true&rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
-jdbc.driver=com.mysql.cj.jdbc.Driver
