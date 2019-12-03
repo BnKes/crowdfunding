@@ -86,7 +86,7 @@
 				});
 				
 				$("#showimg").attr("src","${APP_PATH}/process/showimgProDef.do?id=${param.id}");//替换图片源，${param.id}取传递过来的参数
-				
+				showMenu();
             });
             
             

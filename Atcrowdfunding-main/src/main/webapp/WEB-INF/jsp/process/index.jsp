@@ -121,6 +121,7 @@
 					}
 				});
 			    queryPageUser(0);
+			    showMenu();
             });
             
             $("#uploadPrcDefBtn").click(function(){

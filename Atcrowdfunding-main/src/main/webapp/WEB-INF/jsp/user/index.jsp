@@ -187,7 +187,6 @@ table tbody td:nth-child(even) {
 						}
 					}
 				});
-			    
 			    queryPageUser(0);
 			    showMenu();
             });

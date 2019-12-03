@@ -1,10 +1,10 @@
 function showMenu(){
-	var href = window.location.href ; //http://localhost:8888/Atcrowdfunding-main/user/index.htm
-	var host = window.location.host ;//localhost:8888
+	var href = window.location.href ; // http://localhost:8888/Atcrowdfunding-main/user/index.htm
+	var host = window.location.host ;// localhost:8888
 	var index = href.indexOf(host);//7
 	var path = href.substring(index + host.length); // /Atcrowdfunding-main/user/index.htm
-	var contextPath = "${APP_PATH}"; //${APP_PATH}
-	var pathAddress = path.substring(contextPath.length);// ding-main/user/index.htm
+	var contextPath = "${APP_PATH}"; //  /Atcrowdfunding-main
+	var pathAddress = path.substring(contextPath.length+1);// user/index.htm
 	
 	var alink = $(".list-group a[href*='"+pathAddress+"']");//取出class="list-group"里面<a href*与pathAddress匹配成功的标签
 	
