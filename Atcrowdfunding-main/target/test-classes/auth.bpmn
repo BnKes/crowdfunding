@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="myProcess" name="My process" isExecutable="true">
+  <process id="auth" name="实名认证审核流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <serviceTask id="mailtask1" name="发送验证码" activiti:type="mail">
       <extensionElements>
@@ -43,8 +43,8 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${flag==false}]]></conditionExpression>
     </sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
-    <bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_auth">
+    <bpmndi:BPMNPlane bpmnElement="auth" id="BPMNPlane_auth">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="390.0" y="30.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
@@ -87,7 +87,7 @@
         <omgdi:waypoint x="525.0" y="291.0"></omgdi:waypoint>
         <omgdi:waypoint x="650.0" y="291.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="535.0" y="321.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="535.0" y="321.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
@@ -95,7 +95,7 @@
         <omgdi:waypoint x="525.0" y="439.0"></omgdi:waypoint>
         <omgdi:waypoint x="650.0" y="437.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="535.0" y="399.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="535.0" y="399.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

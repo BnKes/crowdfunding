@@ -17,7 +17,7 @@ public interface MemberMapper {
 
 	Member queryMemberLogin(Map<String, Object> paramMap);
 
-	void updateAcctType(Member loginMember);
+	int updateAcctType(Member member);
 
-	void updateBasicinfo(Member loginMember);
+	int updateBasicinfo(Member member);
 }

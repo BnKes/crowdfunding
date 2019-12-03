@@ -7,6 +7,7 @@
     <result column="userpswd" property="userpswd" jdbcType="CHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="authstatus" property="authstatus" jdbcType="CHAR" />
     <result column="usertype" property="usertype" jdbcType="CHAR" />
     <result column="realname" property="realname" jdbcType="VARCHAR" />
@@ -20,11 +21,11 @@
   </delete>
   <insert id="insert" parameterType="com.atguigu.atcrowdfunding.bean.Member" >
     insert into t_member (id, loginacct, userpswd, 
-      username, email, authstatus, 
+      username, email, tel, authstatus, 
       usertype, realname, cardnum, 
       accttype)
     values (#{id,jdbcType=INTEGER}, #{loginacct,jdbcType=VARCHAR}, #{userpswd,jdbcType=CHAR}, 
-      #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{authstatus,jdbcType=CHAR}, 
+      #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},#{authstatus,jdbcType=CHAR}, 
       #{usertype,jdbcType=CHAR}, #{realname,jdbcType=VARCHAR}, #{cardnum,jdbcType=VARCHAR}, 
       #{accttype,jdbcType=CHAR})
   </insert>
@@ -34,6 +35,7 @@
       userpswd = #{userpswd,jdbcType=CHAR},
       username = #{username,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
       authstatus = #{authstatus,jdbcType=CHAR},
       usertype = #{usertype,jdbcType=CHAR},
       realname = #{realname,jdbcType=VARCHAR},
@@ -42,19 +44,19 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
+    select id, loginacct, userpswd, username, email, tel, authstatus, usertype, realname, 
     cardnum, accttype
     from t_member
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
+    select id, loginacct, userpswd, username, email, tel, authstatus, usertype, realname, 
     cardnum, accttype
     from t_member
   </select>
   
   <select id="queryMemberLogin" resultMap="BaseResultMap" >
-  	select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
+  	select id, loginacct, userpswd, username, email, tel, authstatus, usertype, realname, 
     cardnum, accttype
     from t_member where loginacct=#{loginacct} and userpswd=#{userpswd}
   </select>

@@ -30,4 +30,16 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 
+	@Override
+	public int updateAcctType(Member member) {
+		int count = memberMapper.updateAcctType(member);
+		return count;
+	}
+
+	@Override
+	public int updateBasicinfo(Member loginMember) {
+		int count = memberMapper.updateBasicinfo(loginMember);
+		return count;
+	}
+
 }

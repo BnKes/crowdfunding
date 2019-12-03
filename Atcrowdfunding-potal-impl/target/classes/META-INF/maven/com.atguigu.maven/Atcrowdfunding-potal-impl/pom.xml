@@ -15,6 +15,10 @@
 			<artifactId>Atcrowdfunding-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 	</dependencies>
 	<parent>
 		<groupId>com.atguigu.maven</groupId>

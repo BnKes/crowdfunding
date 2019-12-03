@@ -8,4 +8,8 @@ public interface MemberService {
 
 	Member queryMemberLogin(Map<String, Object> paramMap);
 
+	int updateAcctType(Member member);
+
+	int updateBasicinfo(Member loginMember);
+
 }

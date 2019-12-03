@@ -10,6 +10,8 @@ public class Member {
     private String username;
 
     private String email;
+    
+    private String tel;
 
     private String authstatus;
 
@@ -33,7 +35,15 @@ public class Member {
         return loginacct;
     }
 
-    public void setLoginacct(String loginacct) {
+    public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public void setLoginacct(String loginacct) {
         this.loginacct = loginacct == null ? null : loginacct.trim();
     }
 
