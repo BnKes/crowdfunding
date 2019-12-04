@@ -36,27 +36,21 @@
       </div>
 
 		<ul class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active"><a href="#"><span class="badge">1</span> 基本信息</a></li>
-		  <li role="presentation"><a href="#"><span class="badge">2</span> 资质文件上传</a></li>
+		  <li role="presentation" ><a href="#"><span class="badge">1</span> 基本信息</a></li>
+		  <li role="presentation" class="active"><a href="#"><span class="badge">2</span> 资质文件上传</a></li>
 		  <li role="presentation"><a href="#"><span class="badge">3</span> 邮箱确认</a></li>
 		  <li role="presentation"><a href="#"><span class="badge">4</span> 申请确认</a></li>
 		</ul>
         
 		<form role="form" style="margin-top:20px;">
 		  <div class="form-group">
-			<label for="realname">真实名称</label>
-			<input type="text" class="form-control" id="realname" value="${sessionScope.member.realname }" placeholder="请输入真实名称">
+			<label for="exampleInputEmail1">手执身份证照片</label>
+			<input type="file" class="form-control" >
+            <br>
+            <img src="${APP_PATH }/img/pic.jpg">
 		  </div>
-		  <div class="form-group">
-			<label for="cardnum">身份证号码</label>
-			<input type="text" class="form-control" id="cardnum" value="${sessionScope.member.cardnum }" placeholder="请输入身份证号码">
-		  </div>
-		  <div class="form-group">
-			<label for="tel">电话号码</label>
-			<input type="text" class="form-control" id="tel" value="${sessionScope.member.tel }" placeholder="请输入电话号码">
-		  </div>
-          <button type="button" onclick="window.location.href='${APP_PATH}/member/accttype.htm'" class="btn btn-default">上一步</button>
-		  <button type="button" id="nextBtn"  class="btn btn-success">下一步</button>
+          <button type="button" onclick="window.location.href='basicinfo.htm'" class="btn btn-default">上一步</button>
+		  <button type="button" onclick="window.location.href='apply-2.html'"  class="btn btn-success">下一步</button>
 		</form>
 		<hr>
     </div> <!-- /container -->
@@ -82,39 +76,7 @@
         $('#myTab a').click(function (e) {
           e.preventDefault()
           $(this).tab('show')
-        }); 
-        
-        $("#nextBtn").click(function(){
-    		
-    		var realname = $("#realname");
-    		var cardnum = $("#cardnum");
-    		var tel = $("#tel");
-    		
-    		
-    		$.ajax({
-    			type : "POST",
-    			data : {
-    				"realname" : realname.val(),
-    				"cardnum" : cardnum.val(),
-    				"tel" : tel.val()            			
-    			},
-    			url : "${APP_PATH}/member/updateBasicinfo.do",
-    			beforeSend : function() {            			
-    				return true ;
-    			},
-    			success : function(result){
-    				if(result.success){
-    					window.location.href="${APP_PATH}/member/uploadCert.htm";
-    				}else{
-    					layer.msg("保存基本信息更新失败", {time:1000, icon:5, shift:6}); 
-    				}
-    			},
-    			error : function(){
-    				layer.msg("保存失败", {time:1000, icon:5, shift:6}); 
-    			}
-    		});
-    		
-    	});
+        });        
 	</script>
   </body>
 </html>

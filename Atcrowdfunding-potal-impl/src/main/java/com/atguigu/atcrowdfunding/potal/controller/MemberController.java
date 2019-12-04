@@ -1,5 +1,7 @@
 package com.atguigu.atcrowdfunding.potal.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.apache.bcel.classfile.ConstantObject;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atguigu.atcrowdfunding.bean.Member;
+import com.atguigu.atcrowdfunding.bean.Ticket;
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.potal.service.MemberService;
+import com.atguigu.atcrowdfunding.potal.service.TicketService;
 import com.atguigu.atcrowdfunding.util.AjaxResult;
 import com.atguigu.atcrowdfunding.util.Const;
 
@@ -21,19 +25,57 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("/apply")
-	public String apply(){
+	@Autowired
+	private TicketService ticketService;
+	
+	@RequestMapping("/accttype")
+	public String accttype(){
+		
 		return "member/accttype";
 	}
 	
+	//判断流程已经进行到的步骤
+	@RequestMapping("/apply")
+	public String apply(HttpSession session){
+		Member loginMember = (Member)session.getAttribute(Const.LOGIN_MEMBER);
+		System.out.println("3");
+		Ticket ticket = ticketService.getTicketByMemberId(loginMember.getId());
+		System.out.println("4");
+		if(ticket==null){
+			ticket = new Ticket();
+			ticket.setMemberid(loginMember.getId());
+			ticket.setPstep("apply");
+			ticket.setStatus("0");
+			ticketService.saveTicket(ticket);
+		}else{
+			if("accttype".equals(ticket.getPstep())){
+				return "redirect:/member/basicinfo.htm";
+			}else if("basicinfo".equals(ticket.getPstep())){
+				return "redirect:/member/uploadCert.htm";
+			}else if("uploadCert".equals(ticket.getPstep())){
+				return "redirect:/member/checkemail.htm";
+			}else if("checkemail".equals(ticket.getPstep())){
+				return "redirect:/member/checkauthcode.htm";
+			}
+		}
+		return "member/accttype";
+	}
+
+	
 	@RequestMapping("/basicinfo")
-	public String basicinfo(){
+	public String basicinfo(HttpSession session, Map map){
 		return "member/basicinfo";
+	}
+	
+	@RequestMapping("/uploadCert")
+	public String uploadCert(HttpSession session){
+		
+		return "member/uploadCert";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/updateBasicinfo")
-	public Object updateBasicinfo(Member member, HttpSession session){  //由前端传来的数据自动封装成User
+	public Object updateBasicinfo(Member member, HttpSession session){  
 		
 		AjaxResult result = new AjaxResult();
 		
@@ -44,7 +86,12 @@ public class MemberController {
 			loginMember.setCardnum(member.getCardnum());
 			loginMember.setTel(member.getTel());
 			
-			int count = memberService.updateBasicinfo(loginMember);//需要在impl中手动添加默认密码和createtime
+			int count = memberService.updateBasicinfo(loginMember);
+			
+			//更新流程步骤:
+			Ticket ticket = ticketService.getTicketByMemberId(loginMember.getId()) ;
+			ticket.setPstep("basicinfo");
+			ticketService.updatePstep(ticket);
 			
 			result.setSuccess(count==1);			
 			
@@ -55,17 +102,26 @@ public class MemberController {
 		}
 		return result;  //以流的形式传入序列化JSON数据
 	}
+	
 	//增加
 	@ResponseBody
 	@RequestMapping("/updateAcctType")
-	public Object doAdd(String accttype,HttpSession session){  //由前端传来的数据自动封装成User
+	public Object updateAcctType(String accttype,HttpSession session){  
 		
 		AjaxResult result = new AjaxResult();
 		
 		try {
-			Member member = (Member)session.getAttribute(Const.LOGIN_MEMBER);
-			member.setAccttype(accttype);
-			int count = memberService.updateAcctType(member);//需要在impl中手动添加默认密码和createtime
+			Member loginMember = (Member)session.getAttribute(Const.LOGIN_MEMBER);
+			loginMember.setAccttype(accttype);
+			
+			// 更新账户类型
+			int count = memberService.updateAcctType(loginMember);
+			
+			//记录流程步骤:
+			Ticket ticket = ticketService.getTicketByMemberId(loginMember.getId()) ;
+			ticket.setPstep("accttype");
+			ticketService.updatePstep(ticket);
+			
 			result.setSuccess(1==count);
 		} catch (Exception e) {
 			result.setSuccess(false);
