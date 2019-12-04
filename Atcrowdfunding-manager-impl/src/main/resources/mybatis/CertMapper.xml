@@ -27,4 +27,9 @@
     select id, name
     from t_cert
   </select>
+    <select id="queryAllCert" resultType="BaseResultMap" >
+    select *
+    from t_cert
+  </select>
+  
 </mapper>
