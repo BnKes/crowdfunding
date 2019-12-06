@@ -28,4 +28,6 @@ public interface CerttypeService {
 
 	public int deleteAcctTypeCert(AccountTypeCert accountTypeCert);
 
+	public List<Cert> queryCertByAccttype(String accttype);
+
 }

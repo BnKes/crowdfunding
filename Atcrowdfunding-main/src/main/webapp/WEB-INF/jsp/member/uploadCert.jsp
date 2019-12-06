@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -43,12 +44,15 @@
 		</ul>
         
 		<form role="form" style="margin-top:20px;">
-		  <div class="form-group">
-			<label for="exampleInputEmail1">手执身份证照片</label>
-			<input type="file" class="form-control" >
-            <br>
-            <img src="${APP_PATH }/img/pic.jpg">
-		  </div>
+			<c:forEach items="${queryCertByAccttype }" var="cert" varStatus="status">
+				<div class="form-group">
+					<label for="name">${cert.name }</label>
+					<input type="hidden" name="certimgs[${status.index }].certid" value="${cert.id }">
+					<input type="file" name="certimgs[${status.index }].fileImg" class="form-control" >
+		            <br>
+		            <img src="${APP_PATH }/img/pic.jpg" style="display:none">
+			   </div>
+			</c:forEach>
           <button type="button" onclick="window.location.href='basicinfo.htm'" class="btn btn-default">上一步</button>
 		  <button type="button" onclick="window.location.href='apply-2.html'"  class="btn btn-success">下一步</button>
 		</form>
@@ -77,6 +81,25 @@
           e.preventDefault()
           $(this).tab('show')
         });        
+        
+        
+        $(":file").change(function(event){
+        	var files = event.target.files;
+        	var file;
+        	
+        	if (files && files.length > 0) {
+        		file = files[0];
+        		
+        		var URL = window.URL || window.webkitURL;
+        		// 本地图片路径
+        		var imgURL = URL.createObjectURL(file);
+        		
+        		var imgObj = $(this).next().next(); //获取同辈紧邻的下一个元素
+        		//console.log(imgObj);
+        		imgObj.attr("src", imgURL);
+        		imgObj.show();
+        	}
+			 });
 	</script>
   </body>
 </html>

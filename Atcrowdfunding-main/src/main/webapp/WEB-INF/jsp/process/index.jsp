@@ -124,6 +124,7 @@
 			    showMenu();
             });
             
+            
             $("#uploadPrcDefBtn").click(function(){
                   	$("#deployForm")[0].reset();//二次提交前重置表单
             	$("#processDefFile").click();

@@ -25,4 +25,9 @@
     <delete id="deleteAcctTypeCert" >
 		delete from t_account_type_cert where accttype = #{accttype} and certid = #{certid}
 	</delete>
+	
+	<select id="queryCertByAccttype" resultType="Cert" parameterType="string">
+    	SELECT * FROM t_cert WHERE id IN (SELECT certid FROM t_account_type_cert WHERE accttype=#{accttype})
+    </select>
+	
 </mapper>

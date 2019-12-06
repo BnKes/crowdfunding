@@ -1,5 +1,6 @@
 package com.atguigu.atcrowdfunding.potal.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -10,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.atguigu.atcrowdfunding.bean.Cert;
 import com.atguigu.atcrowdfunding.bean.Member;
 import com.atguigu.atcrowdfunding.bean.Ticket;
 import com.atguigu.atcrowdfunding.bean.User;
+import com.atguigu.atcrowdfunding.manager.service.CertService;
+import com.atguigu.atcrowdfunding.manager.service.CerttypeService;
 import com.atguigu.atcrowdfunding.potal.service.MemberService;
 import com.atguigu.atcrowdfunding.potal.service.TicketService;
 import com.atguigu.atcrowdfunding.util.AjaxResult;
@@ -28,6 +32,9 @@ public class MemberController {
 	@Autowired
 	private TicketService ticketService;
 	
+	@Autowired
+	private CerttypeService certtypeService;
+	
 	@RequestMapping("/accttype")
 	public String accttype(){
 		
@@ -38,9 +45,8 @@ public class MemberController {
 	@RequestMapping("/apply")
 	public String apply(HttpSession session){
 		Member loginMember = (Member)session.getAttribute(Const.LOGIN_MEMBER);
-		System.out.println("3");
 		Ticket ticket = ticketService.getTicketByMemberId(loginMember.getId());
-		System.out.println("4");
+
 		if(ticket==null){
 			ticket = new Ticket();
 			ticket.setMemberid(loginMember.getId());
@@ -69,6 +75,11 @@ public class MemberController {
 	
 	@RequestMapping("/uploadCert")
 	public String uploadCert(HttpSession session){
+		Member loginMember = (Member)session.getAttribute(Const.LOGIN_MEMBER);
+		
+		String accttype = loginMember.getAccttype();
+		List<Cert> queryCertByAccttype = certtypeService.queryCertByAccttype(accttype);
+		session.setAttribute("queryCertByAccttype", queryCertByAccttype);
 		
 		return "member/uploadCert";
 	}

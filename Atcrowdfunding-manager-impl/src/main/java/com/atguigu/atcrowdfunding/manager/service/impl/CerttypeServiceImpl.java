@@ -42,6 +42,12 @@ public class CerttypeServiceImpl implements CerttypeService {
 		return certtypeMapper.deleteAcctTypeCert(accountTypeCert);
 	}
 
+	@Override
+	public List<Cert> queryCertByAccttype(String accttype) {
+		
+		return certtypeMapper.queryCertByAccttype(accttype);
+	}
+
 
 
 }

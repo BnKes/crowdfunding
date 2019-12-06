@@ -15,4 +15,6 @@ public interface CerttypeMapper {
 
 	int deleteAcctTypeCert(AccountTypeCert accountTypeCert);
 
+	List<Cert> queryCertByAccttype(String accttype);
+
 }
