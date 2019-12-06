@@ -14,7 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.atguigu.atcrowdfunding.bean.Permission;
 import com.atguigu.atcrowdfunding.manager.service.PermissionService;
 import com.atguigu.atcrowdfunding.util.Const;
-
+ 
 public class StartSystemListener implements ServletContextListener {
 
 	//在服务器启动时,创建application对象时需要执行的方法.
@@ -24,7 +24,7 @@ public class StartSystemListener implements ServletContextListener {
 		ServletContext application = sce.getServletContext();
 		String contextPath = application.getContextPath();
 		application.setAttribute("APP_PATH", contextPath);
-		
+		System.out.println(contextPath);
 		//加载所有的pemission路径
 		ApplicationContext ioc = WebApplicationContextUtils.getWebApplicationContext(application);
 		PermissionService permissionService = ioc.getBean(PermissionService.class);

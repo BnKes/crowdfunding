@@ -92,6 +92,7 @@
     <script src="${APP_PATH }/jquery/jquery-2.1.1.min.js"></script>
     <script src="${APP_PATH }/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${APP_PATH }/script/docs.min.js"></script>
+	<script src="${APP_PATH}/jquery/layer/layer.js"></script>
         <script type="text/javascript">
             $(function () {
 			    $(".list-group-item").click(function(){
@@ -105,6 +106,64 @@
 					}
 				});
 				showMenu();
+			    <c:forEach items="${certAccttypeList }" var="cert">
+		    		$(":checkbox[certid='${cert.certid}'][accttype='${cert.accttype}']")[0].checked=true ;
+		    	</c:forEach>
+            });
+            
+            $(":checkbox").click(function(){
+            	var flg = this.checked;
+            	//通过this.certid不能获取自定义的属性值
+            	var certid = $(this).attr("certid");
+            	var accttype = $(this).attr("accttype");
+            	
+            	if ( flg ) {
+            		
+            		// 增加账户类型和资质的关系
+            		$.ajax({
+            			type : "POST",
+            			url  : "${APP_PATH}/certtype/insertAcctTypeCert.do",
+            			data : {
+            				certid : certid,
+            				accttype : accttype
+            			},
+            			success : function(result) {
+            				if ( result.success ) {
+            					layer.msg("分配成功", {time:500, icon:6});
+            				} else {
+            					layer.msg("分类关系保存失败", {time:500, icon:5, shift:6});
+            					setTimeout(function(){
+            						//延时要执行的事件
+            						window.location.href = "${APP_PATH}/certtype/index.htm";
+            					},500);	
+            				}
+            			}
+            		});
+            		
+            	} else {
+            		
+            		// 删除账户类型和资质的关系
+            		$.ajax({
+            			type : "POST",
+            			url  : "${APP_PATH}/certtype/deleteAcctTypeCert.do",
+            			data : {
+            				certid : certid,
+            				accttype : accttype
+            			},
+            			success : function(result) {
+            				if ( result.success ) {
+            					layer.msg("取消成功", {time:500, icon:6}); 
+            				} else {
+            					layer.msg("分类关系删除失败", {time:500, icon:5, shift:6});
+            					setTimeout(function(){
+            						//要执行的事件
+            						window.location.href = "${APP_PATH}/certtype/index.htm";
+            					},500);	
+            				}
+            			}
+            		});
+            	}
+
             });
         </script>
         <script type="text/javascript" src="${APP_PATH }/script/menu.js"></script>

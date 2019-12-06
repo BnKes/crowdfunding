@@ -3,6 +3,7 @@ package com.atguigu.atcrowdfunding.manager.service;
 import java.util.List;
 import java.util.Map;
 
+import com.atguigu.atcrowdfunding.bean.AccountTypeCert;
 import com.atguigu.atcrowdfunding.bean.Cert;
 import com.atguigu.atcrowdfunding.util.Page;
 import com.atguigu.atcrowdfunding.vo.Data;
@@ -20,5 +21,11 @@ import com.atguigu.atcrowdfunding.vo.Data;
 public interface CerttypeService {
 	
 	public List<Cert> queryAllCert();
+
+	public List<Map<String, Object>> queryCertAccttype();
+
+	public int insertAcctTypeCert(AccountTypeCert accountTypeCert);
+
+	public int deleteAcctTypeCert(AccountTypeCert accountTypeCert);
 
 }

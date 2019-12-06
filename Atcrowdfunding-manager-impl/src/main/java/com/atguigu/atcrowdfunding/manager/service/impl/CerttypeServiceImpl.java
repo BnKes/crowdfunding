@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atguigu.atcrowdfunding.bean.AccountTypeCert;
 import com.atguigu.atcrowdfunding.bean.Cert;
 import com.atguigu.atcrowdfunding.manager.dao.CerttypeMapper;
 import com.atguigu.atcrowdfunding.manager.service.CerttypeService;
@@ -22,6 +23,25 @@ public class CerttypeServiceImpl implements CerttypeService {
 		
 		return certtypeMapper.queryAllCert();
 	}
+
+	@Override
+	public List<Map<String, Object>> queryCertAccttype() {
+		List<Map<String, Object>> queryCertAccttype = certtypeMapper.queryCertAccttype();
+		return queryCertAccttype;
+	}
+
+	@Override
+	public int insertAcctTypeCert(AccountTypeCert accountTypeCert) {
+	
+		return certtypeMapper.insertAcctTypeCert(accountTypeCert);
+	}
+
+	@Override
+	public int deleteAcctTypeCert(AccountTypeCert accountTypeCert) {
+		
+		return certtypeMapper.deleteAcctTypeCert(accountTypeCert);
+	}
+
 
 
 }
