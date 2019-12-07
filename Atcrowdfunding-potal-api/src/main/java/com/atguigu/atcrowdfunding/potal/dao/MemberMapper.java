@@ -20,4 +20,8 @@ public interface MemberMapper {
 	int updateAcctType(Member member);
 
 	int updateBasicinfo(Member member);
+
+	void updateEmail(Member loginMember);
+
+	void updateAuthstatus(Member loginMember);
 }

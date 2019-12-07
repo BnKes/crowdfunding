@@ -40,4 +40,16 @@ public class MemberServiceImpl implements MemberService {
 		return count;
 	}
 
+	@Override
+	public void updateEmail(Member loginMember) {
+		memberMapper.updateEmail(loginMember);
+		
+	}
+
+	@Override
+	public void updateAuthstatus(Member loginMember) {
+		memberMapper.updateAuthstatus(loginMember);
+		
+	}
+
 }

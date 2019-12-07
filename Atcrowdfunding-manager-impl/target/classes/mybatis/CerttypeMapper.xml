@@ -30,4 +30,15 @@
     	SELECT * FROM t_cert WHERE id IN (SELECT certid FROM t_account_type_cert WHERE accttype=#{accttype})
     </select>
 	
+	<insert id="saveMemberCert" parameterType="java.util.List">
+		insert into t_member_cert (
+			memberid,certid,iconpath
+		) 
+		values    
+		<foreach collection="list" item="item" index= "index" separator =",">
+			(#{item.memberid}, #{item.certid},#{item.iconpath})
+	    </foreach>
+	   
+	</insert>
+	
 </mapper>

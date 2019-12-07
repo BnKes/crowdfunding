@@ -10,4 +10,6 @@ public interface TicketService {
 
 	void updatePstep(Ticket ticket);
 
+	void updatePiidAndPstep(Ticket ticket);
+
 }

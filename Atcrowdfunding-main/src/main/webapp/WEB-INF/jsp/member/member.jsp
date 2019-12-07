@@ -73,10 +73,10 @@
 								${sessionScope.member.loginacct }
 							</h3>
 								<c:choose>
-								    <c:when test="${sessionScope.member.authstatus eq '1'}">    
-									<span class="label label-warning" style="cursor:pointer;">实名认证申请中</span>
+								    <c:when test="${sessionScope.loginMember.authstatus eq '1'}">    
+									<span class="label label-warning" style="cursor:pointer;">实名认证审核中</span>
 								    </c:when>
-								    <c:when test="${sessionScope.member.authstatus eq '2'}">    
+								    <c:when test="${sessionScope.loginMember.authstatus eq '2'}">    
 									<span class="label label-success" style="cursor:pointer;">已实名认证</span>
 								    </c:when>
 								    <c:otherwise>    

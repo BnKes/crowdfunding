@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.atguigu.atcrowdfunding.bean.AccountTypeCert;
 import com.atguigu.atcrowdfunding.bean.Cert;
+import com.atguigu.atcrowdfunding.bean.MemberCert;
 import com.atguigu.atcrowdfunding.util.Page;
 import com.atguigu.atcrowdfunding.vo.Data;
 
@@ -29,5 +30,7 @@ public interface CerttypeService {
 	public int deleteAcctTypeCert(AccountTypeCert accountTypeCert);
 
 	public List<Cert> queryCertByAccttype(String accttype);
+
+	public void saveMemberCert(List<MemberCert> certimgs);
 
 }

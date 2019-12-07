@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html" style="font-size: 32px;">尚筹网-创意产品众筹平台</a>
+		<a class="navbar-brand" href="${APP_PATH }/member.htm" style="font-size: 32px;">尚筹网-创意产品众筹平台</a>
 	</div>
 	<div id="navbar" class="navbar-collapse collapse" style="float: right;">
 		<ul class="nav navbar-nav">
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>${sessionScope.member.username }<span
+				data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>${sessionScope.loginMember.username }<span
 					class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="member.html"><i

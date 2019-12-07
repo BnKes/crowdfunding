@@ -61,8 +61,6 @@
     from t_member where loginacct=#{loginacct} and userpswd=#{userpswd}
   </select>
   
-  
-  
    <update id="updateAcctType" parameterType="com.atguigu.atcrowdfunding.bean.Member" >
     update t_member
     set 
@@ -78,5 +76,21 @@
       tel = #{tel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateEmail" parameterType="com.atguigu.atcrowdfunding.bean.Member" >
+    update t_member
+    set 
+     email = #{email,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <update id="updateAuthstatus" parameterType="com.atguigu.atcrowdfunding.bean.Member" >
+    update t_member
+    set 
+     authstatus = #{authstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
   
 </mapper>

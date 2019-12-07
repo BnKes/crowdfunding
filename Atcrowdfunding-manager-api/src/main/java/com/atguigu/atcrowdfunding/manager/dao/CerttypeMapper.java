@@ -2,6 +2,8 @@ package com.atguigu.atcrowdfunding.manager.dao;
 
 import com.atguigu.atcrowdfunding.bean.AccountTypeCert;
 import com.atguigu.atcrowdfunding.bean.Cert;
+import com.atguigu.atcrowdfunding.bean.MemberCert;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,5 +18,7 @@ public interface CerttypeMapper {
 	int deleteAcctTypeCert(AccountTypeCert accountTypeCert);
 
 	List<Cert> queryCertByAccttype(String accttype);
+
+	void saveMemberCert(List<MemberCert> certimgs);
 
 }

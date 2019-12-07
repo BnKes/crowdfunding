@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.atguigu.atcrowdfunding.bean.AccountTypeCert;
 import com.atguigu.atcrowdfunding.bean.Cert;
+import com.atguigu.atcrowdfunding.bean.MemberCert;
 import com.atguigu.atcrowdfunding.manager.dao.CerttypeMapper;
 import com.atguigu.atcrowdfunding.manager.service.CerttypeService;
 import com.atguigu.atcrowdfunding.util.Page;
@@ -46,6 +47,12 @@ public class CerttypeServiceImpl implements CerttypeService {
 	public List<Cert> queryCertByAccttype(String accttype) {
 		
 		return certtypeMapper.queryCertByAccttype(accttype);
+	}
+
+	@Override
+	public void saveMemberCert(List<MemberCert> certimgs) {
+		
+		certtypeMapper.saveMemberCert(certimgs);
 	}
 
 

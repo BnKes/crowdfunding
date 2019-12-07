@@ -32,4 +32,10 @@ public class TicketServiceImpl implements TicketService {
 		
 	}
 
+	@Override
+	public void updatePiidAndPstep(Ticket ticket) {
+		ticketMapper.updatePiidAndPstep(ticket);
+		
+	}
+
 }

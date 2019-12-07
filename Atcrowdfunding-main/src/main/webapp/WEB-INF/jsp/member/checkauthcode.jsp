@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<link rel="stylesheet" href="${APP_PATH }/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${APP_PATH }/css/font-awesome.min.css">
-	<link rel="stylesheet" href="${APP_PATH }/css/theme.css">
+	<link rel="stylesheet" href="${APP_PATH}/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${APP_PATH}/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${APP_PATH}/css/theme.css">
 	<style>
 #footer {
     padding: 15px 0;
@@ -24,7 +24,7 @@
  <div class="navbar-wrapper">
       <div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			  <%@include file="/WEB-INF/jsp/common/membertop.jsp"%>
+				<%@include file="/WEB-INF/jsp/common/membertop.jsp"%>
 			</nav>
 
       </div>
@@ -36,27 +36,19 @@
       </div>
 
 		<ul class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active"><a href="${APP_PATH}/member/basicinfo.htm"><span class="badge">1</span> 基本信息</a></li>
-		  <li role="presentation"><a href="${APP_PATH}/member/uploadCert.htm"><span class="badge">2</span> 资质文件上传</a></li>
-		  <li role="presentation"><a href="${APP_PATH}/member/checkemail.htm"><span class="badge">3</span> 邮箱确认</a></li>
-		  <li role="presentation"><a href="#"><span class="badge">4</span> 申请确认</a></li>
+		  <li role="presentation" ><a href="#"><span class="badge">1</span> 基本信息</a></li>
+		  <li role="presentation" ><a href="#"><span class="badge">2</span> 资质文件上传</a></li>
+		  <li role="presentation" ><a href="${APP_PATH }/member/checkemail.htm"><span class="badge">3</span> 邮箱确认</a></li>
+		  <li role="presentation" class="active"><a href="#"><span class="badge">4</span> 申请确认</a></li>
 		</ul>
         
 		<form role="form" style="margin-top:20px;">
 		  <div class="form-group">
-			<label for="realname">真实名称</label>
-			<input type="text" class="form-control" id="realname" value="${loginMember.realname }" placeholder="请输入真实名称">
+			<label for="exampleInputEmail1">验证码</label>
+			<input type="text" class="form-control" id="authcode" placeholder="请输入你邮箱中接收到的验证码">
 		  </div>
-		  <div class="form-group">
-			<label for="cardnum">身份证号码</label>
-			<input type="text" class="form-control" id="cardnum" value="${loginMember.cardnum }" placeholder="请输入身份证号码">
-		  </div>
-		  <div class="form-group">
-			<label for="tel">电话号码</label>
-			<input type="text" class="form-control" id="tel" value="${loginMember.tel }" placeholder="请输入电话号码">
-		  </div>
-          <button type="button" onclick="window.location.href='${APP_PATH}/member/accttype.htm'" class="btn btn-default">上一步</button>
-		  <button type="button" id="nextBtn"  class="btn btn-success">下一步</button>
+          <button type="button" onclick="javascript:;" class="btn btn-primary">重新发送验证码</button>
+		  <button type="button" id="finsh"  class="btn btn-success">申请完成</button>
 		</form>
 		<hr>
     </div> <!-- /container -->
@@ -75,42 +67,38 @@
                 </div>
             </div>
         </div>
-    <script src="${APP_PATH }/jquery/jquery-2.1.1.min.js"></script>
-    <script src="${APP_PATH }/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${APP_PATH }/script/docs.min.js"></script>
+    <script src="${APP_PATH}/jquery/jquery-2.1.1.min.js"></script>
+    <script src="${APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/script/docs.min.js"></script>
+	<script src="${APP_PATH}/jquery/layer/layer.js"></script>
 	<script>
         $('#myTab a').click(function (e) {
           e.preventDefault()
           $(this).tab('show')
-        }); 
+        });   
         
-        $("#nextBtn").click(function(){
+       $("#finsh").click(function(){
     		
-    		var realname = $("#realname");
-    		var cardnum = $("#cardnum");
-    		var tel = $("#tel");
-    		
+    		var authcode = $("#authcode");		
     		
     		$.ajax({
     			type : "POST",
     			data : {
-    				"realname" : realname.val(),
-    				"cardnum" : cardnum.val(),
-    				"tel" : tel.val()            			
+    				"authcode" : authcode.val(),         			
     			},
-    			url : "${APP_PATH}/member/updateBasicinfo.do",
+    			url : "${APP_PATH}/member/finishApply.do",
     			beforeSend : function() {            			
     				return true ;
     			},
     			success : function(result){
     				if(result.success){
-    					window.location.href="${APP_PATH}/member/uploadCert.htm";
+    					window.location.href="${APP_PATH}/member.htm";
     				}else{
-    					layer.msg("保存基本信息更新失败", {time:1000, icon:5, shift:6}); 
+    					layer.msg("验证失败", {time:1000, icon:5, shift:6});
     				}
     			},
     			error : function(){
-    				layer.msg("保存失败", {time:1000, icon:5, shift:6}); 
+    				layer.msg("操作失败", {time:1000, icon:5, shift:6}); 
     			}
     		});
     		

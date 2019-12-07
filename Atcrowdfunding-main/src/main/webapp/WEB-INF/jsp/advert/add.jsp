@@ -69,6 +69,8 @@
 				  <div class="form-group">
 					<label for="advpic">广告图片</label>
 					<input type="file" class="form-control" id="advpic" name="advpic" placeholder="请输入广告图片">
+					<br>
+					<img src="" style="display:none">
 				  </div>
 				  <button id="saveBtn" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> 新增</button>
 				  <button id="resetBtn" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
@@ -123,6 +125,35 @@
 				});
             });
             
+            $(":file").change(function(event){
+                
+                var f = $("#advpic").val();
+                if(!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(f)){
+                     layer.msg("图片类型必须是.gif,jpeg,jpg,png中的一种", {time:1000, icon:5, shift:6});
+                     setTimeout(function(){
+                               //延时要执行的事件
+                         /*  window.location.href = "${APP_PATH}/advert/add.htm"; */
+                         $("#advertForm")[0].reset(); 
+                         },500);   
+                    return false;
+                }
+                
+                var files = event.target.files;
+                var file;
+                
+                if (files && files.length > 0) {
+                      file = files[0];
+                     var URL = window.URL || window.webkitURL;
+                      // 本地图片路径
+                      var imgURL = URL.createObjectURL(file);
+                      
+                      var imgObj = $(this).next().next(); //获取同辈紧邻的下一个元素
+                      //console.log(imgObj);
+                      imgObj.attr("src", imgURL);
+                      imgObj.show();
+                      }          
+                     });
+            
             	$("#saveBtn").click(function(){
             		 var options = {
             			url:"${APP_PATH}/advert/doAdd.do",
@@ -150,7 +181,8 @@
                 });	
             	
                 $("#resetBtn").click(function(){
-                	$("#advertForm")[0].reset();
+                	/* $("#advertForm")[0].reset(); */
+                	document.getElementById("advertForm").reset()
                 });
             	
 
