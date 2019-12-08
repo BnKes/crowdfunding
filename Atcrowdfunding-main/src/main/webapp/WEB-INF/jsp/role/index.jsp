@@ -334,8 +334,8 @@ table tbody td:nth-child(even) {
             });
 			
 
-</script>
-<script type="text/javascript" src="${APP_PATH }/script/menu.js"></script>
+	</script>
+	<script type="text/javascript" src="${APP_PATH }/script/menu.js"></script>
         
 </body>
 

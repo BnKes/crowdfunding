@@ -289,7 +289,6 @@ public class MemberController {
 			
 			if(authcode.equals(ticket.getAuthcode())){
 				//查询当前用户的任务（即被分配的“审核验证码”任务）
-//				org.activiti.engine.task.Task task = taskService.createTaskQuery().processInstanceId(ticket.getPiid()).taskAssignee(loginMember.getLoginacct()).singleResult();
 				TaskQuery processInstanceId = taskService.createTaskQuery().processInstanceId(ticket.getPiid());
 				org.activiti.engine.task.Task task = processInstanceId.taskAssignee(loginMember.getLoginacct()).singleResult();
 				//完成审核

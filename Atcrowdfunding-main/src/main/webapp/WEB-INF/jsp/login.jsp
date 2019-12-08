@@ -31,7 +31,7 @@
       	${exception.message }
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 用户登录</h2>
 		  <div class="form-group has-success has-feedback">
-			<input type="text" class="form-control" id="floginacct" name="loginacct" value="zhangsan" placeholder="请输入登录账号" autofocus>
+			<input type="text" class="form-control" id="floginacct" name="loginacct" value="superadmin" placeholder="请输入登录账号" autofocus>
 			<span class="glyphicon glyphicon-user form-control-feedback"></span>
 		  </div>
 		  <div class="form-group has-success has-feedback">
@@ -40,8 +40,8 @@
 		  </div>
 		  <div class="form-group has-success has-feedback">
 			<select id="ftype" class="form-control" name="type">
-                <option value="member" selected>会员</option>
-                <option value="user" >管理</option>
+                <option value="member" >会员</option>
+                <option value="user" selected>管理</option>
             </select>
 		  </div>
         <div class="checkbox">

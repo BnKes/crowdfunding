@@ -24,4 +24,9 @@ public interface MemberMapper {
 	void updateEmail(Member loginMember);
 
 	void updateAuthstatus(Member loginMember);
+
+	Member getMemberById(int memberid);
+
+	List<Map<String, Object>> queryCertByMemberid(int memberid);
+
 }
