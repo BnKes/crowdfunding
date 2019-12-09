@@ -136,6 +136,7 @@
             });
             
             $("#passBtn").click(function(){
+            	layer.confirm("确认要通过吗?",  {icon: 3, title:'提示'}, function(cindex){
             	$.ajax({
             		type : "POST",
             		url  : "${APP_PATH}/authcert/pass.do",
@@ -147,9 +148,13 @@
             			window.location.href = "${APP_PATH}/authcert/index.htm";
             		}
             	});
+           	}, function(cindex){
+           	    layer.close(cindex);
+           	});            	         
             });
             
             $("#refuseBtn").click(function(){
+            	layer.confirm("确认要拒绝吗?",  {icon: 3, title:'提示'}, function(cindex){
             	$.ajax({
             		type : "POST",
             		url  : "${APP_PATH}/authcert/refuse.do",
@@ -161,7 +166,9 @@
             			window.location.href = "${APP_PATH}/authcert/index.htm";
             		}
             	});
-
+           	}, function(cindex){
+           	    layer.close(cindex);
+           	});  
             });
         </script>
   </body>

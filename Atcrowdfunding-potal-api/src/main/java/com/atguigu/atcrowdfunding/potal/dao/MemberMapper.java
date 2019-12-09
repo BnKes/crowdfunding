@@ -29,4 +29,6 @@ public interface MemberMapper {
 
 	List<Map<String, Object>> queryCertByMemberid(int memberid);
 
+	void deleteMemberCertbyMemberId(Integer memberid);
+
 }

@@ -123,4 +123,24 @@ public class AuthcertController {
 		return result;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/refuse")
+	public Object refuse( String taskid, Integer memberid ) {
+		
+		AjaxResult result = new AjaxResult();
+		
+		try {
+			taskService.setVariable(taskid, "flag", false);
+			taskService.setVariable(taskid, "memberid", memberid);
+			
+			taskService.complete(taskid);
+			
+			result.setSuccess(true);
+		} catch (Exception e) {
+			result.setSuccess(false);
+		}
+		
+		return result;
+	}
+	
 }

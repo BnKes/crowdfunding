@@ -65,4 +65,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.queryCertByMemberid(memberid);
 	}
 
+	@Override
+	public void deleteMemberCertbyMemberId(Integer memberid) {
+		memberMapper.deleteMemberCertbyMemberId(memberid);
+		
+	}
+
 }

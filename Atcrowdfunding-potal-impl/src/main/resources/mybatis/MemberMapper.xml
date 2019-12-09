@@ -80,7 +80,7 @@
   <update id="updateEmail" parameterType="com.atguigu.atcrowdfunding.bean.Member" >
     update t_member
     set 
-     email = #{email,jdbcType=VARCHAR},
+     email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -102,6 +102,11 @@
 	ON t_cert.id = t_member_cert.certid
 	WHERE t_member_cert.memberid = #{memberid}
   </select>
+  
+  <delete id="deleteMemberCertbyMemberId" parameterType="java.lang.Integer" >
+    delete from t_member_cert
+    where memberid = #{memberid}
+  </delete>
   
   
 </mapper>

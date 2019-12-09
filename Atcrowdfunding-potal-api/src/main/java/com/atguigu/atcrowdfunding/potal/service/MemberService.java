@@ -21,5 +21,7 @@ public interface MemberService {
 
 	List<Map<String, Object>> queryCertByMemberid(int memberid);
 
+	void deleteMemberCertbyMemberId(Integer memberid);
+
 
 }

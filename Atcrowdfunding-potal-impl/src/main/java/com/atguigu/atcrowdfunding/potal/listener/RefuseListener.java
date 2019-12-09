@@ -34,6 +34,9 @@ public class RefuseListener implements ExecutionListener {
 		
 		//更新t_ticket表的status字段 0 -> 1 表示流程结束
 		ticketService.updateStatus(member);
+		
+		//删除member_cert里的图片信息
+		memberService.deleteMemberCertbyMemberId(memberid);
 	}
 
 }
